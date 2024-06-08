@@ -9,7 +9,14 @@ const DataTable = () => {
     const [currentPage,setCurrentPage] = useState(1)
     const itemsPerPage = 5;
     const LastItem = currentPage * itemsPerPage
+    const indexOfFirstItem = LastItem-itemsPerPage
 
+    let filteredItems = data.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredData =filteredItems.slice(indexOfFirstItem,LastItem)
+
+    useEffect(()=>{
+        setCurrentPage(1)
+    },[searchTerm])
     useEffect(() => {
         if (!editId) return;
 
@@ -54,6 +61,11 @@ const DataTable = () => {
     };
 
     const handleDelete = (id) => {
+
+        if(filteredData.length===1 && currentPage!==1){
+            setCurrentPage((prev)=>prev-1);
+        }
+
         const updatedList = data.filter((item) => item.id !== id);
         setData(updatedList);
     };
@@ -64,9 +76,10 @@ const DataTable = () => {
         const updatedList = data.map((item) => item.id === id ? { ...item, ...updatedData } : item);
         setData(updatedList);
     };
-
-    const filteredData = data.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
+    const paginate =  (pageNumber)=>{
+        setCurrentPage(pageNumber)
+    }
+  
     return (
         <div className='container'>
             <div className='add-container'>
@@ -105,7 +118,11 @@ const DataTable = () => {
                 </table>
                 <div className='pagination'>
                   {
-                    Array.from({length})
+                    Array.from({length: Math.ceil(filteredItems.length/itemsPerPage)},(_,index)=>(
+                      <button key={index+1} onClick={()=>paginate(index+1)} style={{backgroundColor: currentPage=== index+1 &&"lightgreen"}}>
+                        {index+1}
+                      </button>
+                    ))
                   }
                 </div>
             </div>
