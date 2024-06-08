@@ -1,8 +1,45 @@
-# React + Vite
+# DataTable Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and interactive React component for managing a data table with functionalities for adding, editing, deleting, searching, and paginating entries.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add Entries**: Add new entries with fields for name, gender, and age.
+- **Edit Entries**: Edit existing entries directly in the table.
+- **Delete Entries**: Delete entries from the table.
+- **Search**: Filter entries by name.
+- **Pagination**: Paginate the entries for easy navigation.
+
+## Installation
+
+1. Clone the repository:
+
+```sh
+git clone <repository-url>
+```
+
+2. Navigate to the project directory and install dependencies:
+
+```sh
+cd <project-directory>
+npm install
+```
+
+## Usage
+
+Import and use the DataTable component in your project:
+
+```jsx
+import React from 'react';
+import DataTable from './DataTable';
+
+function App() {
+  return (
+    <div className="App">
+      <DataTable />
+    </div>
+  );
+}
+
+export default App;
+```
