@@ -1,0 +1,23 @@
+.wrapper{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.traffic-light-container{
+  background-color: #000;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+
+.traffic-light{
+  --size: 50px;
+  background-color: #555;
+  border-radius: var(--size);
+  height: var(--size);
+  width: var(--size);
+}
